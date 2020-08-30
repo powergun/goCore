@@ -4,13 +4,11 @@ import (
 	"fmt"
 )
 
-
 type VersionString interface {
 	ToStr() string
 	ToInts() [3]uint
 	IsValid() bool
 }
-
 
 type SemanticVersion struct {
 	major uint
@@ -18,12 +16,10 @@ type SemanticVersion struct {
 	patch uint
 }
 
-
 func CreateSemanticVersion(s string) SemanticVersion {
 	sv := SemanticVersion{}
 	return sv
 }
-
 
 func (v SemanticVersion) ToInts() [3]uint {
 	var nums [3]uint
@@ -33,14 +29,12 @@ func (v SemanticVersion) ToInts() [3]uint {
 	return nums
 }
 
-
 func (v SemanticVersion) IsValid() bool {
 	if v.major == 0 && v.minor == 0 && v.patch == 0 {
 		return false
 	}
 	return true
 }
-
 
 func (v SemanticVersion) ToStr() string {
 	if !v.IsValid() {
@@ -49,7 +43,6 @@ func (v SemanticVersion) ToStr() string {
 	return fmt.Sprintf("%d.%d.%d", v.major, v.minor, v.patch)
 }
 
-
 func CreateSemanticVersionFromNums(nums [3]uint) SemanticVersion {
 	v := SemanticVersion{}
 	v.major = nums[0]
@@ -57,5 +50,3 @@ func CreateSemanticVersionFromNums(nums [3]uint) SemanticVersion {
 	v.patch = nums[2]
 	return v
 }
-
-
