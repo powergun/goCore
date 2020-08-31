@@ -29,3 +29,25 @@ func (this *ForLoopFixture) TestIndexBasedFor() {
 func TestForLoopFixture(t *testing.T) {
 	gunit.Run(new(ForLoopFixture), t)
 }
+
+func TestCStyleForLoop(t *testing.T) {
+	sum := 0
+	for idx := 0; idx < 10; idx++ {
+		sum += idx
+	}
+	assert.Equal(t, sum, 45)
+
+	for i, j := 0, 10; i < j; i, j = i+1, j-1 {
+		assert.Less(t, i, j)
+	}
+}
+
+func TestInfiniteLoop(t *testing.T) {
+	var counter int
+	for {
+		counter += 1
+		if counter > 10 {
+			break
+		}
+	}
+}
