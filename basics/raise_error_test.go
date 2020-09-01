@@ -15,11 +15,16 @@ func strstr(s string) error {
 	return EmptyString
 }
 
-func TestRaiseError(t *testing.T) {
+func TestRaiseArbitraryError(t *testing.T) {
 	err := fmt.Errorf("iddqd %s", "e1m1")
 	assert.NotEqual(t, nil, err)
 }
 
-func TestRaiseException(t *testing.T) {
+func TestRaiseDefinedError(t *testing.T) {
 	assert.NotEqual(t, nil, strstr(""))
+
+	switch strstr("") {
+	case EmptyString:
+		assert.Equal(t, 0, 0)
+	}
 }
