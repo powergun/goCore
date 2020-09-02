@@ -7,6 +7,8 @@ import (
 
 // empty interface can be useful to model an "unknown type" - a type
 // to be determined at runtime
+// however in production I should avoid this pattern, or at least
+// cast it to a known type as early as possible
 
 func whatIs(i interface{}) {
 	// type to string (aka type-id)
