@@ -7,6 +7,8 @@ import (
 )
 
 // implement the sort interface for int-slice
+// but I can not define the function using the builtin types directly
+// I have to use the type aliases
 type IS []int
 
 func (is IS) Len() int {
