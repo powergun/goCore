@@ -11,6 +11,9 @@ func TestArraySlice(t *testing.T) {
 	assert.Equal(t, "iddqd", words[0])
 }
 
+// slices can be passed around to functions by (mutable) references,
+// therefore go disallows passing slices by pointers
+
 // nasty mutator function... do not do that in real world
 func length(xs []string) int {
 	xs[0] = "iddqd"
