@@ -1,9 +1,9 @@
 package reGex
 
 import (
-	"testing"
-	"regexp"
 	"fmt"
+	"regexp"
+	"testing"
 )
 
 func TestMatchWholeWord(t *testing.T) {
@@ -16,7 +16,7 @@ func TestMatchWholeWord(t *testing.T) {
 }
 
 func TestGetValueInsideCaptureGroups(t *testing.T) {
-	r := regexp.MustCompile("p=(\\w+)")
+	r := regexp.MustCompile(`p=(\w+)`)
 	text := "p=n1, p=n2, p=n3,,,,"
 	result := r.FindAllStringSubmatch(text, -1)
 	matched := make([]string, len(result))

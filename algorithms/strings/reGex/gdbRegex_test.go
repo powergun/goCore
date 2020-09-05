@@ -1,12 +1,11 @@
 package reGex
 
 import (
+	"bufio"
 	"errors"
+	"os"
 	"strings"
 	"testing"
-	"github.com/powergun/goUsage/_resources"
-	"os"
-	"bufio"
 )
 
 func parseAndAssert(t *testing.T, line string, field string, expected string) {
@@ -23,8 +22,8 @@ func parseAndAssert(t *testing.T, line string, field string, expected string) {
 	}
 }
 
-func iterLines(fileName string, callback func(string, int)error) error {
-	filePath := _resources.ResourcePath(fileName)
+func iterLines(fileName string, callback func(string, int) error) error {
+	filePath := fileName
 	f, _ := os.Open(filePath)
 	scanner := bufio.NewScanner(f)
 	idx := 1
