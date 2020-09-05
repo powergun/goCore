@@ -8,6 +8,7 @@ import (
 
 func TestSwitchCase(t *testing.T) {
 	num_bytes, err := fmt.Printf("")
+	// use switch...case as if..else-if..else-if...
 	switch {
 	case err != nil:
 		assert.Equal(t, num_bytes, 0)
@@ -20,6 +21,7 @@ func TestSwitchCase(t *testing.T) {
 }
 
 func TestSwitchCaseVariable(t *testing.T) {
+	// the classic switch expression that takes a single variable
 	for i, r := range "iddqddkfa" {
 		switch r {
 		case 'i':
