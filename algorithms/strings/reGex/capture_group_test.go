@@ -2,6 +2,7 @@ package reGex
 
 import (
 	"fmt"
+	"github.com/stretchr/testify/assert"
 	"regexp"
 	"testing"
 )
@@ -9,14 +10,15 @@ import (
 func TestGetValueInsideCaptureGroups(t *testing.T) {
 	r := regexp.MustCompile(`p=(\w+)`)
 	text := "p=n1, p=n2, p=n3,,,,"
+	// result looks like this
+	// [[p=n1 n1] [p=n2 n2] [p=n3 n3]]
+	// each element consists of the whole match and the capture group
 	result := r.FindAllStringSubmatch(text, -1)
 	matched := make([]string, len(result))
 	for idx, tokens := range result {
 		matched[idx] = tokens[1]
 	}
-	if "[n1 n2 n3]" != fmt.Sprint(matched) {
-		t.Errorf("failed: %s", matched)
-	}
+	assert.Equal(t, []string{"n1", "n2", "n3"}, matched)
 }
 
 func TestMultipleCaptureGroups(t *testing.T) {
