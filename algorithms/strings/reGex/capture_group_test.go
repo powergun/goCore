@@ -20,6 +20,7 @@ p=n3,
 	//          __ 2nd group
 	// [[p=n1 p n1] [p=n2 p n2] [p=n3 p n3]]
 	//        ^ 1st group
+	//   ^^^^ match string
 	// each element consists of the whole match and the capture group
 	result := r.FindAllStringSubmatch(text, -1)
 	matched := make([]string, len(result))
