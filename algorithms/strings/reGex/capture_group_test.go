@@ -24,7 +24,7 @@ p=n3,
 	result := r.FindAllStringSubmatch(text, -1)
 	matched := make([]string, len(result))
 	for idx, tokens := range result {
-		matched[idx] = tokens[1]
+		matched[idx] = tokens[2]
 	}
 	assert.Equal(t, []string{"n1", "n2", "n3"}, matched)
 }
