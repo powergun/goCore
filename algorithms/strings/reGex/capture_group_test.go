@@ -7,6 +7,23 @@ import (
 	"testing"
 )
 
+// nested capture group, source:
+// https://regexone.com/lesson/nested_groups
+func TestNestedCaptureGroup(t *testing.T) {
+	reg := regexp.MustCompile(`(a(b(.+)))`)
+	for _, match := range reg.FindAllStringSubmatch(`abcow`, -1) {
+		// the whole match
+		assert.Equal(t, "abcow", match[0])
+
+		// 1st capture group (the outermost one)
+		assert.Equal(t, "abcow", match[1])
+		// 2nd capture group (one layer down)
+		assert.Equal(t, "bcow", match[2])
+		// 3nd capture group, innermost
+		assert.Equal(t, "cow", match[3])
+	}
+}
+
 func TestGetValueInsideCaptureGroups(t *testing.T) {
 	r := regexp.MustCompile(`(\w+)=([^,=]+)`)
 	text := `
@@ -36,7 +53,9 @@ func TestMultipleCaptureGroups(t *testing.T) {
 	result := r.FindAllStringSubmatch(text, -1)
 	for idx, tokens := range result {
 		// tokens slice consists of 3 elements:
-		// the whole match (asd is  asd), the first capture group, the second capture group
+		// - [0] the whole match (asd is  asd)
+		// - [1] the first capture group
+		// - [2] the second capture group
 		fmt.Printf("%v |%v|%v|%v|\n", idx, tokens[0], tokens[1], tokens[2])
 	}
 }

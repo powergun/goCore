@@ -1,14 +1,36 @@
 package reGex
 
 import (
-	"testing"
+	"github.com/stretchr/testify/assert"
 	"regexp"
+	"testing"
 )
+
+func TestSplit(t *testing.T) {
+	reg := regexp.MustCompile(`[\s\n\t,.]+`)
+	tokens := reg.Split(`there  . is ,   
+
+a
+
+cow`, -1)
+	assert.Equal(t, []string{"there", "is", "a", "cow"}, tokens)
+}
+
+func TestSplitHead(t *testing.T) {
+	reg := regexp.MustCompile(`[\s\n\t,.]+`)
+	tokens := reg.Split(`there  . is ,   
+
+a
+
+cow`, 2)
+	// n: at most n substrings
+	assert.Equal(t, "there", tokens[0])
+}
 
 func groups(s string, re *regexp.Regexp) []string {
 	result := re.FindAllStringSubmatch(s, -1)
 	if len(result) == 1 {
-		return result[0][1: ]
+		return result[0][1:]
 	}
 	return nil
 }
